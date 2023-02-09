@@ -4,10 +4,12 @@ import { Platform, StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export default function SurahScreen() {
+export default function SurahScreen({route}) {
+    const { surahId } = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
+        <Text style={styles.title}>Modal {JSON.stringify(surahId)}</Text>
+
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/ModalScreen.tsx" />
 

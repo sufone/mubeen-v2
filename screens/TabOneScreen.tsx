@@ -18,11 +18,9 @@ export default function TabOneScreen({navigation}: RootTabScreenProps<'TabOne'>)
                         <Text style={styles.sectionTitle}>{title}</Text>
                     </View>
                 )}
-                renderItem={({item: {name, period, verses, number}, index}) => (
+                renderItem={({item: {name, period, verses, number}}) => (
                     <TouchableHighlight
-                        // onPress={() => navigation.navigate(`Surah`, {"title": index, "name": name, "period": period })}
-
-                        onPress={() => navigation.navigate('Surah')}
+                        onPress={() => navigation.navigate('Surah', { surahId: number })}
                         style={styles.card}
                         activeOpacity={0.9}
                         underlayColor="white"
