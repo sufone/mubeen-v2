@@ -1,8 +1,9 @@
 import {StatusBar} from 'expo-status-bar';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import {Text, View} from '../components/Themed';
+import SimpleBlock from '../components/SimpleBlock';
 
 import summaries from './summaries.js';
 
@@ -12,15 +13,21 @@ export default function SurahScreen({route}) {
     console.log();
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{summaries[surahId-1].name} </Text>
+            <SafeAreaView style={styles.container} >
+                <ScrollView >
+                    <Text style={styles.title}>{summaries[surahId-1].name} </Text>
+                    <SimpleBlock title="Period">{summaries[surahId-1].summary.period}</SimpleBlock>
+                    <SimpleBlock title="Context">{summaries[surahId-1].summary.context}</SimpleBlock>
+                    <SimpleBlock title="Theme">{summaries[surahId-1].summary.theme}</SimpleBlock>
 
-            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
-            <EditScreenInfo path="/screens/ModalScreen.tsx"/>
+                    <EditScreenInfo path="/screens/ModalScreen.tsx"/>
+                </ScrollView>
+
+
 
             {/* Use a light status bar on iOS to account for the black space above the modal */}
             <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'}/>
-        </View>
+        </SafeAreaView>
     );
 }
 
