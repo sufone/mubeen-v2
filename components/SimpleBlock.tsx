@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import {StyleSheet, Text, View, SafeAreaView, FlatList, Button} from 'react-native';
 
-function SummaryBlock({children, title}) {
+function SimpleBlock({children, title}) {
 
     return (
         <View style={styles.bodyContainer}>
@@ -12,7 +12,7 @@ function SummaryBlock({children, title}) {
     )
 }
 
-export default SummaryBlock
+export default SimpleBlock
 
 const styles = StyleSheet.create({
     container: {
