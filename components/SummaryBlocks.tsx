@@ -2,24 +2,43 @@ import React, {useState} from 'react';
 
 import {StyleSheet, Text, View, SafeAreaView, FlatList, Button} from 'react-native';
 
-//import MenuComp from './MenuCompFav'
-// from render block before <text>
-// <MenuComp breakdown={summaryData} content={summaryData.details}
-//     surahName={surahsOld[props.surah].name} title={props.surah}
-//     index={props.block} update={props.update}/>
-
-//    let summaryData = summaries[props.surah].summary.breakdown[props.block]
-
-//                <MenuComp breakdown={breakdown} content={breakdown.details} surahName={surahsOld[title].name} title={title} index={index}/>
-
 
 function SummaryBlocks({children, title}) {
+
+    function properCase(input) {
+        return input.toLowerCase()
+            .split(' ')
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ')
+    }
+
+    function blockTitle(breakdownRef) {
+        if (breakdownRef.rangeEnd) {
+            return "Ayah " + breakdownRef.rangeStart + " – " + breakdownRef.rangeEnd
+        } else {
+            return "Ayah " + breakdownRef.rangeStart
+        }
+    }
+
     return (
-        <View style={styles.bodyContainer}>
+        <View >
 
             {children.map((breakdown, index) => {
                 return (
-                    <View key={index} >
+                        <View key={index} style={styles.bodyContainer}>
+                        <View style={styles.bodyTitle}>
+                            <View style={styles.mainButton}>
+                                <><Text style={styles.bodyTitleText}>
+                                    {properCase(breakdown.name) + '\n'
+                                    }
+                                </Text></>
+                                <><Text style={styles.subtitle}>
+                                    {blockTitle(breakdown)}
+                                </Text>
+                                </>
+                            </View>
+
+                        </View>
                         {breakdown.details.map((detail, index) => {
                             console.log(detail[1])
                             if (detail[1] !== undefined) {
