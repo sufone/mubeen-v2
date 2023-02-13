@@ -19,7 +19,7 @@ function SummaryBlocks({children, title}) {
 
             {children.map((breakdown, index) => {
                 return (
-                    <View key={index} style={styles.bodyContainer}>
+                    <View key={index} >
                         {breakdown.details.map((detail, index) => {
                             console.log(detail[1])
                             if (detail[1] !== undefined) {
