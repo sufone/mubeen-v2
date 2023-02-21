@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 
 import {StyleSheet, Text, View, SafeAreaView, FlatList, Button} from 'react-native';
-
 function SimpleBlock({children, title}) {
 
     return (
         <View style={styles.bodyContainer}>
+        
             <Text style={styles.bodyText}>{title} </Text>
             <Text style={styles.bodyText}>{children} </Text>
+
         </View>
     )
 }
