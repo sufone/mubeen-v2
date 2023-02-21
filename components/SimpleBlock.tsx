@@ -1,15 +1,38 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { Menu, MenuItem, MenuDivider } from 'react-native-material-menu';
 
-import {StyleSheet, Text, View, SafeAreaView, FlatList, Button} from 'react-native';
-function SimpleBlock({children, title}) {
+import { StyleSheet, Text, View, SafeAreaView, FlatList, Button } from 'react-native';
+function SimpleBlock({ children, title }) {
+
+
+    const [visible, setVisible] = useState(false);
+
+    const hideMenu = () => setVisible(false);
+
+    const showMenu = () => setVisible(true);
 
     return (
         <View style={styles.bodyContainer}>
-        
             <Text style={styles.bodyText}>{title} </Text>
-            <Text style={styles.bodyText}>{children} </Text>
 
+            <View style={{alignItems: 'center', justifyContent: 'center' }}>
+                <Menu
+                    visible={visible}
+                    anchor={
+                        <Text onPress={showMenu} style={styles.bodyText}>{children} </Text>
+
+                    }
+                    onRequestClose={hideMenu}
+                >
+                    <MenuItem onPress={hideMenu}>Menu item 1</MenuItem>
+                    <MenuItem onPress={hideMenu}>Menu item 2</MenuItem>
+                    <MenuItem disabled>Disabled item</MenuItem>
+                    <MenuDivider />
+                    <MenuItem onPress={hideMenu}>Menu item 4</MenuItem>
+                </Menu>
+            </View>
         </View>
+
     )
 }
 
